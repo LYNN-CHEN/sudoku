@@ -9,7 +9,11 @@ export default function SudokuPage() {
   useEffect(()=> {
     let ignore = false
     const fetchData = async() => {
-      const res  = await fetch('https://sudokuserver.boxz.dev/getpaper/')
+      const res  = await fetch('https://sudokuserver.boxz.dev/api/getpaper/',{
+        method:'GET',
+        credentials: 'include',
+        mode: 'cors'
+      })
       if (!ignore) {
         console.log(res)
       }

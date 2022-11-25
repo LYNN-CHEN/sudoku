@@ -8,21 +8,21 @@ export default function Login() {
   const regExp = /^(0|86|17951)?(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$/
 
   const handleSubmit = (e) => {
-    console.log('success', e)
-    let data = {
-      name: e.UserName,
-      phone: e.Phone
-    }
+    // console.log('success', e)
+    let data=new FormData()
+    data.append('name',e.UserName)
+    data.append('phone',e.Phone)
     console.log(data)
-    // fetch('https://sudokuserver.boxz.dev/signin/', {
-    //   method: 'POST',
-    //   body: JSON.stringify(data)
-    // }).then((res) => {
-    //   console.log(res)
-    //   navigate('/notice')
-    // }).catch((err) => {
-    //   console.log(err)
-    // })
+    fetch('https://sudokuserver.boxz.dev/api/signin/', {
+      method: 'POST',
+      // credentials: 'include',
+      body: data
+    }).then((res) => {
+      console.log(res)
+      navigate('/notice')
+    }).catch((err) => {
+      console.log(err)
+    })
     
   }
 
