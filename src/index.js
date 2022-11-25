@@ -29,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/sudoku",
     element: <Sudoku />
+  },
+  {
+    path: "/submitted",
+    element: <Submit />
   }
 ]);
 
@@ -48,12 +52,12 @@ root.render(
           backgroundSize: '100%,100%'
         }}
       >
-        <Sider style={{ width: 200 }}></Sider>
+        <Sider style={{ width: 180 }}></Sider>
         <Content>
           {/* <Sudoku /> */}
           <RouterProvider router={router} />
         </Content>
-        <Sider style={{ width: 200 }}></Sider>
+        <Sider style={{ width: 180 }}></Sider>
       </Layout>
       {/* <Footer>Footer</Footer> */}
     </div>

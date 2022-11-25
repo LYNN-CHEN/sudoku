@@ -5,8 +5,8 @@ export default class Sudoku extends React.Component {
   constructor(props) {
     super(props)
     let sudoku = require('sudoku')
-
-    let puzzle = sudoku.makepuzzle()
+    let puzzleStr = props.puzzle
+    let puzzle = puzzleStr.split(",")
     console.log('puzzle is \n', puzzle)
     let solution = sudoku.solvepuzzle(puzzle)
     // let difficulty = sudoku.ratepuzzle(puzzle, 4);
@@ -29,6 +29,14 @@ export default class Sudoku extends React.Component {
     this.NumberTableOnClick = this.NumberTableOnClick.bind(this)
   }
 
+  componentWillReceiveProps(nextProps){
+    // this.setState({
+    //   puzzle: nextProps.puzzle,
+    //   newPuzzle: nextProps.puzzle
+    // });
+  }
+  
+
   NumberTableOnClick(e) {
     // console.log(e)
     let newPuzzle = [...this.state.newPuzzle]
@@ -46,6 +54,7 @@ export default class Sudoku extends React.Component {
       currentNum: e,
       table: table,
     })
+    this.props.setAnswer(newPuzzle.toString())
     console.log(
       this.state.puzzle[this.state.currentSelect],
       newPuzzle[this.state.currentSelect],
@@ -113,7 +122,7 @@ export default class Sudoku extends React.Component {
       if (i/9 < 1) {
         clsName += "bold-top "
       }
-      if (puzzle[i] !== null) {
+      if (puzzle[i] !== '') {
         clsName += "inited"
         res.push(
           <div
@@ -197,6 +206,7 @@ export default class Sudoku extends React.Component {
         style={{
           display: 'flex',
         }}
+        table={this.state.puzzle}
       >
         <div
           className="board"

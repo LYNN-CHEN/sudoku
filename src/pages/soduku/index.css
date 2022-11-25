@@ -1,0 +1,17 @@
+.right-sider {
+    margin: 0;
+    padding-left: 25px;
+    min-height: 400px;
+    min-width: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.timer {
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.semi-spin-wrapper {
+  color: white;
+}

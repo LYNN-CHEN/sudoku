@@ -1,10 +1,11 @@
-import React from 'react'
-import { Form, Button } from '@douyinfe/semi-ui'
+import React, { useState } from 'react'
+import { Form, Button, Banner } from '@douyinfe/semi-ui'
 import { useNavigate } from 'react-router-dom'
 import './index.css'
 
 export default function Login() {
   let navigate = useNavigate()
+  const [visible, setVisible] = useState(false)
   const regExp = /^(0|86|17951)?(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$/
 
   const handleSubmit = (e) => {
@@ -19,12 +20,31 @@ export default function Login() {
       body: data
     }).then((res) => {
       console.log(res)
-      navigate('/notice')
+      if (res.ok) {
+        setVisible(false)
+        navigate('/notice')
+      } else {
+        setVisible(true)
+        console.log('wrong')
+      }
     }).catch((err) => {
+      setVisible(true)
       console.log(err)
     })
     
   }
+
+  const changeVisible = () => {
+    setVisible(!visible)
+  }
+
+  const banner = (
+    <Banner 
+      type="danger"
+      description="请输入正确的姓名和手机号码！"
+      onClose={changeVisible}
+    />
+  )
 
   return (
     <div
@@ -37,8 +57,8 @@ export default function Login() {
         border: '3px solid black',
       }}
     >
+      {visible ? banner : null}
       <h4>登录考试页面</h4>
-
       <Form
         layout="vertical"
         style={{
