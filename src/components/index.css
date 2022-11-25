@@ -1,0 +1,33 @@
+.inited {
+    /* border: 1px solid black; */
+    margin: 0;
+    width: 40px;
+    height: 40px;
+    background-color: #ddd
+}
+.selected {
+    margin: 0;
+    width: 40px;
+    height: 40px;
+    background-color: skyblue
+}
+.none {
+    margin: 0;
+    width: 40px;
+    height: 40px;
+}
+.normal {
+    border: 1px solid black;
+}
+.bold-right {
+    border-right: 2.5px solid black;
+}
+.bold-bottom {
+    border-bottom: 2.5px solid black;
+}
+.bold-left {
+    border-left: 2.5px solid black;
+}
+.bold-top {
+    border-top: 2.5px solid black;
+}
