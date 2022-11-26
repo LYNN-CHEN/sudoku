@@ -1,10 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-} from "react-router-dom"
+import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
 import './index.css'
 import BGImage from '../src/assets/bg.png'
 import Notice from '../src/pages/notice/index'
@@ -19,37 +15,51 @@ const { Header, Footer, Sider, Content } = Layout
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Login />,
   },
   {
-    path: "/notice",
+    path: '/notice',
     element: <Notice />,
   },
   {
-    path: "/sudoku",
-    element: <Sudoku />
+    path: '/sudoku',
+    element: <Sudoku />,
   },
   {
-    path: "/submitted",
-    element: <Submit />
-  }
-]);
+    path: '/submitted',
+    element: <Submit />,
+  },
+])
 
 root.render(
   <React.StrictMode>
     <div style={{ height: '100%' }}>
-      <Header style={{ height: '100px', background: '#bfb9db', padding: '18px 24px' }}>
-        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', width: '200px'}}>
-          <div><b>深圳市数独协会</b></div>
-          <div><b><i>SZ SUDOKU</i></b></div>
+      <Header
+        style={{ height: '180px', background: '#bfb9db', padding: '18px 24px' }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'column',
+            }}
+          >
+            <div>
+              <h3>2022年深圳市智力运动系列赛事之数独公开赛</h3>
+            </div>
+            <div>主办单位：深圳市文化广电旅游体育局</div>
+            <div>承办单位：深圳市数独协会</div>
+          </div>
         </div>
       </Header>
       <Layout
         style={{
           height: 'calc(100% - 100px)',
           backgroundImage: `url(${BGImage})`,
-          backgroundSize: '100%,100%'
+          backgroundSize: '100%,100%',
         }}
       >
         <Sider style={{ width: 180 }}></Sider>

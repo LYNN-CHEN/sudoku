@@ -18,7 +18,7 @@ export default function Notice() {
         border: '3px solid black',
       }}
     >
-      <h3>2022 年深圳市智力运动系列赛事之数独公开赛-初赛</h3>
+      {/* <h3>2022 年深圳市智力运动系列赛事之数独公开赛-初赛</h3> */}
       <Card
         style={{ minHeight: 180, width: '100%', marginBottom: 24 }}
         bordered={true}

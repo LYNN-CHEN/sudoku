@@ -30,60 +30,65 @@ export default function SudokuPage() {
     data.append('paper1',answer1)
     data.append('paper2',answer2)
     console.log(data)
-    // fetch('https://sudokuserver.boxz.dev/api/paper/', {
-    //   method: 'POST',
-    //   // credentials: 'include',
-    //   body: data
-    // }).then((res) => {
-    //   console.log(res)
-    //   if (res.ok) {
-    //     setSubmit(true)
-    //     navigate('/submitted')
-    //   } else {
-    //     setSubmit(false)
-    //     console.log('wrong')
-    //   }
-    // }).catch((err) => {
-    //   setSubmit(false)
-    //   console.log(err)
-    // })
+    fetch('https://sudokuserver.boxz.dev/api/submitpaper/', {
+      method: 'POST',
+      // credentials: 'include',
+      body: data
+    }).then((res) => {
+      console.log(res)
+      if (res.ok) {
+        setSubmit(true)
+        navigate('/submitted')
+      } else {
+        setSubmit(false)
+        setLoading(false)
+        console.log('wrong')
+      }
+    }).catch((err) => {
+      setSubmit(false)
+      setLoading(false)
+      console.log(err)
+    })
   }
 
   // fetchData
   useEffect(() => {
-    // let ignore = false
-    // const fetchData = async() => {
-    //   const res  = await fetch('https://sudokuserver.boxz.dev/api/getpaper/',{
-    //     method:'GET',
-    //     credentials: 'include',
-    //     mode: 'cors'
-    //   })
-    //   if (!ignore) {
-    //     console.log(res)
-    //   }
-    // }
-    // fetchData()
-    // return () => {
-    //   ignore = true;
-    // };
-    setQuestion1(testData1)
-    setQuestion2(testData2)
-    console.log("finished")
+    let ignore = false
+    const fetchData = async() => {
+      const res  = await fetch('https://sudokuserver.boxz.dev/api/getpaper/',{
+        method:'GET',
+        credentials: 'include',
+        mode: 'cors'
+      })
+      if (!ignore) {
+        try{
+          const jsonRes = await res.json()
+          setQuestion1(jsonRes.data.paper1.content)
+          setQuestion2(jsonRes.data.paper2.content)
+          
+        } catch(e) {
+          alert(e)
+        }
+      }
+      console.log("q1\n", question1)
+      console.log("q2\n", question2)
+    }
+    fetchData()
     setLoading(false)
+    return () => {
+      ignore = true;
+    };
   }, [])
 
   // 定时器函数
   useEffect(() => {
-    // 可以在函数组件内处理生命周期事件，默认情况，每次渲染都会调用该函数
     const t = setInterval(() => {
       setNow(moment())
-      // 未到答题时间
+      // 未到答题时间：需改成开始时间
       if (moment().unix() >= 1669396400) {
         setNotArrive(false)
       }
-     
     }, 1000)
-
     return () => {
       clearTimeout(t)
     }
@@ -93,6 +98,7 @@ export default function SudokuPage() {
     return <p>未到答题时间</p>
   }
 
+  // 自动提交函数：需改成提交时间
   if (now.unix() >= 2669396800 && !submit) {
     setSubmit(true)
     console.log('auto')
