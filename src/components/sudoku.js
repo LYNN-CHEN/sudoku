@@ -6,7 +6,7 @@ export default class Sudoku extends React.Component {
     super(props)
     let sudoku = require('sudoku')
     let puzzleStr = props.puzzle
-    let puzzle = puzzleStr.split(",")
+    let puzzle = puzzleStr.split("")
     console.log('puzzle is \n', puzzle)
     let solution = sudoku.solvepuzzle(puzzle)
     // let difficulty = sudoku.ratepuzzle(puzzle, 4);
