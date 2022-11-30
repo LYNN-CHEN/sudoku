@@ -122,7 +122,7 @@ export default class Sudoku extends React.Component {
       if (i/9 < 1) {
         clsName += "bold-top "
       }
-      if (puzzle[i] !== '') {
+      if (puzzle[i] !== ' ') {
         clsName += "inited"
         res.push(
           <div
